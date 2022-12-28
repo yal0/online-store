@@ -1,0 +1,26 @@
+.footer {
+    background: $footer-background;
+    color: $footer;
+    margin-top: auto;
+
+    .wrapper {
+        display: flex;
+        min-height: 50px;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    &__link {
+        display: block;
+        color: $footer;
+        text-decoration: none;
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+
+    &__rs-logo {
+        display: block;
+        width: 80px;
+    }
+}
