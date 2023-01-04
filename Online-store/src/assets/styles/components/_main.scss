@@ -1,0 +1,290 @@
+.info {
+  color: $text-light;
+  width: 100%;
+  text-align: left;
+
+  &__search {
+    margin: 12px 0 28px;
+    font-weight: 400;
+    font-size: 11px;
+    line-height: 13px;
+  }
+
+  &__found {
+    margin-bottom: 18px;
+    font-weight: 500;
+    font-size: 12px;
+
+    &-category {
+      font-weight: 600;
+      font-size: 20px;
+      line-height: 24px;
+      letter-spacing: 0.03em;
+      color: $selected-background;
+    }
+  }
+}
+
+.search {
+  border: 1px solid $menu-background;
+  background: $background;
+  border-radius: 5px;
+  width: 344px;
+  height: 36px;
+  padding: 0px;
+  display: flex;
+  font-family: 'Montserrat', sans-serif;
+
+  .search__field {
+    display: block;
+    box-sizing: border-box;
+    padding: 2px 8px;
+    width: 308px;
+    margin: 0px;
+    border: none;
+    outline: 0;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 500;
+    color: $selected-background;
+  }
+
+  &::after {
+    display: block;
+    width: 37px;
+    height: 37px;
+    cursor: pointer;
+    background: url('../images/search.svg') no-repeat center center;
+    content: '';
+  }
+}
+
+.sorts {
+  background-color: $menu-background;
+
+  &__bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+
+    &_select {
+      font-family: inherit;
+      font-style: inherit;
+      font-weight: 500;
+      appearance: none;
+      -moz-appearance: none;
+      -webkit-appearance: none;
+      background-color: #fff;
+      border: none;
+      outline: none;
+      width: 170px;
+      height: 36px;
+      border-radius: 2px;
+      font-weight: 500;
+      font-size: 13px;
+      padding: 0 15px 0 12px;
+      cursor: pointer;
+      color: $selected-background;
+      background-image: url("data:image/svg+xml,%3Csvg width='8' height='6' viewBox='0 0 8 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M8 0.605957L0 0.605957L4 5.5601L8 0.605957Z' fill='black' fill-opacity='0.87'/%3E%3C/svg%3E%0A");
+      background-repeat: no-repeat;
+      background-position: right .8em top 53%;
+
+    }
+  }
+}
+
+.filters {
+  width: 25%;
+}
+
+.products {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin: 40px 0;
+
+  &__container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    width: 75%;
+    gap: 20px 10px;
+  }
+
+  &__item {
+    width: 295px;
+    border: 1px solid #ddd;
+  }
+
+  &__card {
+    position: relative;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    height: 367px;
+    margin-bottom: 14px;
+    cursor: pointer;
+
+    &_discount {
+      position: absolute;
+      top: 0;
+      left: 0;
+      background-color: $cart-count-background;
+      color: $cart-count;
+      width: 60px;
+      height: 20px;
+      font-weight: 600;
+      font-size: 12px;
+      font-family: inherit;
+      text-align: center;
+      line-height: 20px;
+    }
+  }
+
+  &__info {
+    margin: 0 9px;
+    display: flex;
+    justify-content: space-between;
+
+    &-left {
+      width: 60%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    &-right {
+      width: 40%;
+    }
+
+    &-price {
+
+      &_old {
+        color: $menu;
+        font-family: inherit;
+        font-weight: 500;
+        font-size: 13px;
+        text-decoration: line-through;
+        opacity: 0.8;
+        margin-right: 4px;
+      }
+
+      &_new {
+        color: $discount-background;
+        font-family: inherit;
+        font-weight: 600;
+        font-size: 14px;
+      }
+    }
+
+    &-name {
+      margin-top: 9px;
+
+      &_title {
+        font-family: inherit;
+        font-weight: 400;
+        font-size: 13px;
+        color: $menu;
+      }
+
+      &_category {
+        font-family: inherit;
+        font-weight: 500;
+        font-size: 12px;
+        color: $menu;
+        opacity: 0.6;
+      }
+    }
+
+    &-rating {
+      margin-top: 20px;
+
+      & span:first-child {
+        font-family: inherit;
+        font-weight: 500;
+        font-size: 12px;
+        color: $menu;
+        opacity: 0.6;
+      }
+
+      &_count {
+        font-family: inherit;
+        font-weight: 400;
+        font-size: 13px;
+        color: $menu;
+      }
+    }
+
+    &-brand {
+      margin-bottom: 14px;
+
+      & span:first-child {
+        font-family: inherit;
+        font-weight: 500;
+        font-size: 12px;
+        color: $menu;
+        opacity: 0.6;
+      }
+
+      &_name {
+        font-family: inherit;
+        font-weight: 400;
+        font-size: 13px;
+        color: $menu;
+      }
+    }
+
+    &-stock {
+      text-align: right;
+
+      & span:first-child {
+        font-family: inherit;
+        font-weight: 500;
+        font-size: 12px;
+        color: $menu;
+        opacity: 0.6;
+      }
+
+      &_count {
+        font-family: inherit;
+        font-weight: 400;
+        font-size: 13px;
+        color: $menu;
+      }
+    }
+
+    &_btn {
+      width: 115px;
+      height: 35px;
+      border: none;
+      border-radius: 2px;
+      background-color: $btn-background;
+      color: $main;
+      font-weight: 500;
+      font-size: 12px;
+      font-family: inherit;
+      margin-top: 18px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      text-align: center;
+      justify-content: space-between;
+      padding: 8px;
+      transition: .2s;
+
+      &::after {
+        display: block;
+        width: 25px;
+        height: 25px;
+        background-image: url('../images/cart-white.svg');
+        background-repeat: no-repeat;
+        background-position: center;
+        content: '';
+      }
+
+      &:hover {
+        opacity: 0.9;
+      }
+    }
+  }
+}

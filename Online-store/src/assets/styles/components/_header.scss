@@ -1,6 +1,6 @@
 .logo_header {
     display: block;
-    margin: 17px auto;
+    margin: 14px auto;
     width: 148px;
     height: 31px;
 }
@@ -17,40 +17,9 @@
     }
 }
 
-.search {
-    border: 1px solid $menu-background;
-    background: $background;
-    border-radius: 5px;
-    width: 344px;
-    height: 36px;
-    padding: 0px;
-    display: flex;
-
-    .search__field {
-        display: block;
-        box-sizing: border-box;
-        padding: 2px 8px;
-        width: 308px;
-        height: 36px;
-        margin: 0px;
-        border: none;    
-        outline: 0;
-    }
-
-    &::after {
-        display:block;
-        width: 36px;
-        height: 36px;
-        cursor: pointer;
-        background:url('../images/search.svg') no-repeat center center;
-        content: '';
-    }
-
-}
-
 .sum{
     margin: auto 36px auto auto;
-    
+
     &__value{
         font-weight: bold;
     }

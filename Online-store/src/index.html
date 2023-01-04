@@ -3,42 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google" content="notranslate">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./assets/styles/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;600&display=swap" rel="stylesheet">
     <link rel="shortcut icon" type="image/x-icon" href="./assets/images/favicon.svg">
     <title>Online Store</title>
 </head>
-<body>
-    <body class="body">
-        <header class="header">
-            <img class="logo logo_header" src="./assets/images/logo.svg" alt="Song Bird">
-            <div class="top-menu">
-                <div class="wrapper">
-                    <div class="search">
-                        <input class="search__field" type="search">
-                    </div>
-                    <div class="sum">Cart total: <span class="sum__value">€574.00</span></div>
-                    <div class="cart">
-                        <div class="cart__count">5</div>
-                    </div>
-                </div>
-            </div>
-        </header>
-        
-        <main>
-            <div id="catalog"></div>
-            <div id="cart"></div>
-        </main>
+<body class="body">
 
-        <footer class="footer">
+    <header class="header">
+        <a href="index.html">
+            <img class="logo logo_header" src="./assets/images/logo.svg" alt="logo">
+        </a>
+        <div class="top-menu">
             <div class="wrapper">
-                <div>
-                    <a href="https://github.com/yal0/" class="footer__link">yal0</a>
-                    <a href="https://github.com/vadim001230/" class="footer__link">vadim001230</a>
+                <div class="sum">Cart total: <span class="sum__value">€574.00</span></div>
+                <div class="cart">
+                    <div class="cart__count">5</div>
                 </div>
-                <div>2022</div>
-                <a href="https://rs.school/js/" class="footer__rs-logo"><img src="./assets/images/rs_school.svg" alt="RS School"></a>
             </div>
-        </footer>
+        </div>
+    </header>
+
+    <main class="main" id="main">
+        <div class="info wrapper">
+            <p class="info__search">Search by category «<span class="info__search-category">Smartphones</span>»</p>
+            <p class="info__found"><span class="info__found-category">Smartphones </span><span class="info__found-count">100</span> results</p>
+        </div>
+        <div class="sorts">
+            <div class="sorts__bar wrapper">
+                <select class="sorts__bar_select">
+                    <option disabled selected>Sort options</option>
+                    <option value="price-ASC">Price ↑</option>
+                    <option value="price-DESC">Price ↓</option>
+                    <option value="rating-ASC">Rating ↑</option>
+                    <option value="rating-DESC">Rating ↓</option>
+                    <option value="discount-ASC">Discount ↑</option>
+                    <option value="discount-DESC">Discount ↓</option>
+                </select>
+                <div class="search">
+                    <input class="search__field" type="search">
+                </div>
+            </div>
+        </div>
+        <div class="products">
+            <div class="filters"></div>
+            <div class="products__container" id="productsContainer">
+                <!-- render -->
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="wrapper">
+            <div>
+                <a href="https://github.com/yal0/" class="footer__link">yal0</a>
+                <a href="https://github.com/vadim001230/" class="footer__link">vadim001230</a>
+            </div>
+            <div>2022</div>
+            <a href="https://rs.school/js/" class="footer__rs-logo"><img src="./assets/images/rs_school.svg" alt="RS School"></a>
+        </div>
+    </footer>
 </body>
 </html>
