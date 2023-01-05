@@ -1,8 +1,8 @@
 .logo_header {
     display: block;
-    margin: 14px auto;
+    margin: 10px auto;
     width: 148px;
-    height: 31px;
+    height: 30px;
 }
 
 .top-menu {
@@ -30,6 +30,7 @@
     height: 36px;
     background: $background url('../images/cart.svg') no-repeat center center;
     border-radius: 50%;
+    cursor: pointer;
 
     &__count {
         position: relative;

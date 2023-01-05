@@ -1,16 +1,20 @@
 import { Products } from '../data/data';
 import '../assets/images/logo.svg';
+import '../assets/images/menu3x3.svg';
+import '../assets/images/menu5x5.svg';
 import '../assets/images/rs_school.svg';
 import '../assets/styles/style.scss';
-
 const catalogProducts = document.getElementById('productsContainer');
-// let total = 100,
-//   skip = 0,
-//   limit = 100;
-export class Catalog {
-  renderProducts() {
-    let htmlCatalogProducts = '';
+const categoryList = document.getElementById('categoryList');
+const brandList = document.getElementById('brandList');
 
+export class CatalogPage {
+  public renderProducts = (): void => {
+    let htmlCatalogProducts = '';
+    let htmlFiltersCategory = '';
+    let htmlFiltersBrand = '';
+    const categoryArr: string[] = [];
+    const brandArr: string[] = [];
     Products.forEach(
       ({
         id,
@@ -63,11 +67,49 @@ export class Catalog {
             </div>
           </div>
           `;
+        // render category filters
+        if (!categoryArr.includes(category) || categoryArr.length === 0) {
+          categoryArr.push(category);
+          htmlFiltersCategory += `
+          <div class="filters__list-checkbox">
+            <input type="checkbox" class="input-checkbox" id="${
+              categoryArr[categoryArr.length - 1]
+            }">
+            <label for="${categoryArr[categoryArr.length - 1]}">${
+            categoryArr[categoryArr.length - 1][0].toUpperCase() +
+            categoryArr[categoryArr.length - 1].slice(1)
+          }   </label>
+            <span>(5/5)</span>
+          </div>
+          `;
+        }
+
+        // render brands filters
+        if (!brandArr.includes(brand) || brandArr.length === 0) {
+          brandArr.push(brand);
+          htmlFiltersBrand += `
+          <div class="filters__list-checkbox">
+            <input type="checkbox" class="input-checkbox" id="${
+              brandArr[brandArr.length - 1]
+            }">
+            <label for="${brandArr[brandArr.length - 1]}">${
+            brandArr[brandArr.length - 1]
+          } </label>
+            <span>(1/1)</span>
+          </div>
+          `;
+        }
       }
     );
 
     if (catalogProducts) {
       catalogProducts.innerHTML = htmlCatalogProducts;
     }
-  }
+    if (categoryList) {
+      categoryList.innerHTML = htmlFiltersCategory;
+    }
+    if (brandList) {
+      brandList.innerHTML = htmlFiltersBrand;
+    }
+  };
 }
