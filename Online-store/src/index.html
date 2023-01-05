@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google" content="notranslate">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;600&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" type="image/x-icon" href="./assets/images/cart.svg">
+    <title>Online Store</title>
+</head>
+<body class="body">
+
+    <header class="header">
+        <a href="index.html">
+            <img class="logo logo_header" src="./assets/images/logo.svg" alt="logo">
+        </a>
+        <div class="top-menu">
+            <div class="wrapper">
+                <div class="sum">Cart total: <span class="sum__value">€574.00</span></div>
+                <div class="cart">
+                    <div class="cart__count">5</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="main" id="main">
+        <div class="info wrapper">
+            <p class="info__search">Search by category «<span class="info__search-category">Smartphones</span>»</p>
+            <p class="info__found"><span class="info__found-category">Smartphones </span><span class="info__found-count">100</span> results</p>
+        </div>
+        <div class="sorts">
+            <div class="sorts__container wrapper">
+                <div class="view">
+                    <div class="view__small active">
+                        <img src="./assets/images/menu3x3.svg" alt="view-small" width="40px">
+                    </div>
+                    <div class="view__big">
+                        <img src="./assets/images/menu5x5.svg" alt="view-big" width="40px">
+                    </div>
+                </div>
+                <div class="sorts__bar">
+                    <select class="sorts__bar_select">
+                        <option disabled selected>Sort options</option>
+                        <option value="price-ASC">Price ↑</option>
+                        <option value="price-DESC">Price ↓</option>
+                        <option value="rating-ASC">Rating ↑</option>
+                        <option value="rating-DESC">Rating ↓</option>
+                        <option value="discount-ASC">Discount ↑</option>
+                        <option value="discount-DESC">Discount ↓</option>
+                    </select>
+                    <div class="search">
+                        <input class="search__field" type="search">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="products wrapper">
+            <div class="filters">
+                <div class="filters-category">
+                    <h3 class="filters__title">Category</h3>
+                    <div class="filters__list" id="categoryList"></div>
+                </div>
+                <div class="filters-brand">
+                    <h3 class="filters__title">Brand</h3>
+                    <div class="filters__list" id="brandList"></div>
+                </div>
+
+                <div class="filters-price">
+                    <h3 class="filters__title">Price</h3>
+                    <div class="price-range">
+                        <div class="price-range__data">
+                            <div class="price-range__data-in">57</div>
+                            <div class="price-range__data-arrow">⟷</div>
+                            <div class="price-range__data-out">1749</div>
+                        </div>
+                        <div class="price-range__input-container">
+                            <input type="range" class="price-range__input price-range__input_left" min="57" max="1749" value="57" step="1">
+                            <input type="range" class="price-range__input price-range__input_right" min="57" max="1749" value="1749" step="1">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="filters-stock">
+                    <h3 class="filters__title">Stock</h3>
+                    <div class="stock-range">
+                        <div class="stock-range__data">
+                            <div class="stock-range__data-in">1</div>
+                            <div class="stock-range__data-arrow">⟷</div>
+                            <div class="stock-range__data-out">150</div>
+                        </div>
+                        <div class="stock-range__input-container">
+                            <input type="range" class="stock-range__input stock-range__input_left" min="1" max="150" value="1" step="1">
+                            <input type="range" class="stock-range__input stock-range__input_right" min="1" max="150" value="150" step="1">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="products__container" id="productsContainer">
+                <!-- render -->
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="wrapper">
+            <div>
+                <a href="https://github.com/yal0/" class="footer__link">yal0</a>
+                <a href="https://github.com/vadim001230/" class="footer__link">vadim001230</a>
+            </div>
+            <div>2022</div>
+            <a href="https://rs.school/js/" class="footer__rs-logo"><img src="./assets/images/rs_school.svg" alt="RS School"></a>
+        </div>
+    </footer>
+</body>
+</html>
