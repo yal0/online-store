@@ -7,6 +7,9 @@ const EslingPlugin = require('eslint-webpack-plugin');
 const baseConfig = {
   entry: path.resolve(__dirname, './src/index'),
   mode: 'development',
+  devServer: {
+    historyApiFallback: true,
+  },
   module: {
     rules: [
       {
@@ -21,6 +24,10 @@ const baseConfig = {
         test: /\.ts$/i,
         use: ['ts-loader'],
       },
+      {
+        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        type: 'asset/resource',
+      },
     ],
   },
   resolve: {
@@ -30,6 +37,8 @@ const baseConfig = {
     hashFunction: 'sha256',
     filename: 'index.js',
     path: path.resolve(__dirname, '../dist'),
+    publicPath: '/',
+    assetModuleFilename: 'assets/images/[name][ext]',
   },
   plugins: [
     new HtmlWebpackPlugin({
