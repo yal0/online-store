@@ -260,7 +260,7 @@
   display: flex;
   align-items: center;
   text-align: center;
-  justify-content: space-between;
+  justify-content: space-around;
 
   &__reset,
   &__copy {
@@ -276,6 +276,12 @@
     cursor: pointer;
     transition: .2s;
 
+    &.copied {
+      background-color: $discount-background;
+      &:hover {
+        background-color: $discount-background;
+      }
+    }
     &:hover {
       background-color: $btn-hover;
     }

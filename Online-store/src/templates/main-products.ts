@@ -8,7 +8,7 @@ const catalogProducts = document.getElementById('productsContainer');
 const categoryList = document.getElementById('categoryList');
 const brandList = document.getElementById('brandList');
 
-export class CatalogPage {
+export class MainPageView {
   public renderProducts = (): void => {
     let htmlCatalogProducts = '';
     let htmlFiltersCategory = '';
@@ -16,17 +16,7 @@ export class CatalogPage {
     const categoryArr: string[] = [];
     const brandArr: string[] = [];
     Products.forEach(
-      ({
-        id,
-        title,
-        price,
-        discountPercentage,
-        rating,
-        stock,
-        brand,
-        category,
-        thumbnail,
-      }) => {
+      ({ id, title, price, discountPercentage, rating, stock, brand, category, thumbnail }) => {
         htmlCatalogProducts += `
           <div class="products__item" data-id="${id}">
             <div class="products__card" style="background-image: url(${thumbnail});">
@@ -43,7 +33,7 @@ export class CatalogPage {
                 <div class="products__info-name">
                   <span class="products__info-name_title">${
                     title[0].toUpperCase() + title.slice(1)
-                  } /</span>
+                  }/</span>
                   <span class="products__info-name_category">${
                     category[0].toUpperCase() + category.slice(1)
                   }</span>
@@ -89,12 +79,8 @@ export class CatalogPage {
           brandArr.push(brand);
           htmlFiltersBrand += `
           <div class="filters__list-checkbox">
-            <input type="checkbox" class="input-checkbox" id="${
-              brandArr[brandArr.length - 1]
-            }">
-            <label for="${brandArr[brandArr.length - 1]}">${
-            brandArr[brandArr.length - 1]
-          } </label>
+            <input type="checkbox" class="input-checkbox" id="${brandArr[brandArr.length - 1]}">
+            <label for="${brandArr[brandArr.length - 1]}">${brandArr[brandArr.length - 1]} </label>
             <span>(1/1)</span>
           </div>
           `;
