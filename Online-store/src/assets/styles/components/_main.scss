@@ -256,6 +256,31 @@
   }
 }
 
+.filters-btns {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: space-between;
+
+  &__reset,
+  &__copy {
+    width: 115px;
+    height: 35px;
+    border: none;
+    border-radius: 2px;
+    background-color: $btn-background;
+    color: $main;
+    font-weight: 500;
+    font-size: 12px;
+    font-family: inherit;
+    cursor: pointer;
+    transition: .2s;
+
+    &:hover {
+      background-color: $btn-hover;
+    }
+  }
+}
 
 .products {
   display: flex;
