@@ -1,5 +1,6 @@
 import { MainPageView } from '../templates/main-products';
 import { checkSelector } from '../utils/checkSelector';
+import { localStorageProducts } from '../utils/localStorageProducs';
 
 export class MainPageController {
   view: MainPageView;
@@ -9,6 +10,7 @@ export class MainPageController {
 
   setupPage() {
     this.copyLink();
+    this.addToCart();
   }
 
   copyLink() {
@@ -25,8 +27,48 @@ export class MainPageController {
       })().catch(() => 'err');
     });
   }
-}
 
+  addToCart() {
+    const productItems: NodeListOf<HTMLElement> = document.querySelectorAll('.products__item');
+    let productsArr: localStorageProducts[] = [];
+    let cartSumNum = 0;
+    productItems.forEach((item) => {
+      const itemBtn = checkSelector(item, '.products__info_btn-cart');
+      const cartCount = checkSelector(document, '.cart__count');
+      const sumValue = checkSelector(document, '.sum__value');
+      function toggleProductToCard() {
+        const id = item.dataset.id;
+        const count = 1;
+        const price = item.dataset.price;
+        const products = localStorage.getItem('products');
+        if (products) {
+          productsArr = JSON.parse(products) as localStorageProducts[];
+        }
+
+        if (productsArr.find((item) => item.id === id)) {
+          const index = productsArr.findIndex((el) => el.id === id);
+          productsArr.splice(index, 1);
+          cartCount.innerHTML = productsArr.length.toString();
+          itemBtn.innerHTML = 'Add to cart';
+          itemBtn.classList.remove('active');
+          cartSumNum = productsArr.reduce((sum, elem) => sum + +elem.price, 0);
+        } else {
+          let cartCountNum = productsArr.length;
+          if (id && price) productsArr.push({ id, count, price });
+          cartCountNum++;
+          cartCount.innerHTML = cartCountNum.toString();
+          itemBtn.innerHTML = 'Drop to cart';
+          itemBtn.classList.add('active');
+          cartSumNum = productsArr.reduce((sum, elem) => sum + +elem.price, 0);
+        }
+        localStorage.setItem('products', JSON.stringify(productsArr));
+        localStorage.setItem('cartSum', cartSumNum.toString());
+        sumValue.innerHTML = `€${cartSumNum}`;
+      }
+      itemBtn.addEventListener('click', toggleProductToCard);
+    });
+  }
+}
 // const priceInputLeft = document.getElementById(
 //   'priceInputLeft'
 // ) as HTMLInputElement;

@@ -1,12 +1,20 @@
 import { Products } from '../data/data';
+import { checkSelector } from '../utils/checkSelector';
+import { localStorageProducts } from '../utils/localStorageProducs';
 import '../assets/images/logo.svg';
 import '../assets/images/menu3x3.svg';
 import '../assets/images/menu5x5.svg';
 import '../assets/images/rs_school.svg';
 import '../assets/styles/style.scss';
+
 const catalogProducts = document.getElementById('productsContainer');
 const categoryList = document.getElementById('categoryList');
 const brandList = document.getElementById('brandList');
+const sumValue = checkSelector(document, '.sum__value');
+const cartSumNum = localStorage.getItem('cartSum');
+const cartCount = checkSelector(document, '.cart__count');
+const products = localStorage.getItem('products');
+let productsArr: localStorageProducts[] = [];
 
 export class MainPageView {
   public renderProducts = (): void => {
@@ -15,10 +23,26 @@ export class MainPageView {
     let htmlFiltersBrand = '';
     const categoryArr: string[] = [];
     const brandArr: string[] = [];
+    sumValue.innerHTML = `€${cartSumNum || 0}`;
+    let btnToCartRender = '';
+    const productsArrId: string[] = [];
+    if (products) {
+      productsArr = JSON.parse(products) as localStorageProducts[];
+      cartCount.innerHTML = productsArr.length.toString();
+      productsArr.forEach((item) => productsArrId.push(item.id));
+      btnToCartRender = '<button class="products__info_btn-cart active">Drop to cart</button>';
+    }
+
     Products.forEach(
       ({ id, title, price, discountPercentage, rating, stock, brand, category, thumbnail }) => {
+        if (productsArrId.includes(id.toString())) {
+          btnToCartRender = '<button class="products__info_btn-cart active">Drop to cart</button>';
+        } else {
+          btnToCartRender = '<button class="products__info_btn-cart">Add to cart</button>';
+        }
+
         htmlCatalogProducts += `
-          <div class="products__item" data-id="${id}">
+          <div class="products__item" data-id="${id}" data-price="${price}">
             <div class="products__card" style="background-image: url(${thumbnail});">
               <div class="products__card_discount">-${discountPercentage}%</div>
             </div>
@@ -52,7 +76,7 @@ export class MainPageView {
                   <span>Stock:<br></span>
                   <span class="products__info-stock_count">${stock}</span>
                 </div>
-                <button class="products__info_btn">Add to cart</button>
+                ${btnToCartRender}
                 </div>
             </div>
           </div>
