@@ -54,8 +54,7 @@ export const Products: IProducts[] = [
   {
     id: 3,
     title: 'Samsung Universe 9',
-    description:
-      "Samsung's new variant which goes beyond Galaxy to the Universe",
+    description: "Samsung's new variant which goes beyond Galaxy to the Universe",
     price: 1249,
     discountPercentage: 15.46,
     rating: 4.09,
@@ -105,8 +104,7 @@ export const Products: IProducts[] = [
   {
     id: 6,
     title: 'MacBook Pro',
-    description:
-      'MacBook Pro 2021 with mini-LED display may launch between September, November',
+    description: 'MacBook Pro 2021 with mini-LED display may launch between September, November',
     price: 1749,
     discountPercentage: 11.02,
     rating: 4.57,
@@ -163,8 +161,7 @@ export const Products: IProducts[] = [
   {
     id: 9,
     title: 'Infinix INBOOK',
-    description:
-      'Infinix Inbook X1 Ci3 10th 8GB 256GB 14 Win10 Grey – 1 Year Warranty',
+    description: 'Infinix Inbook X1 Ci3 10th 8GB 256GB 14 Win10 Grey – 1 Year Warranty',
     price: 1099,
     discountPercentage: 11.83,
     rating: 4.54,
@@ -279,8 +276,7 @@ export const Products: IProducts[] = [
   {
     id: 15,
     title: 'Eau De Perfume Spray',
-    description:
-      'Genuine  Al-Rehab spray perfume from UAE/Saudi Arabia/Yemen High Quality',
+    description: 'Genuine  Al-Rehab spray perfume from UAE/Saudi Arabia/Yemen High Quality',
     price: 30,
     discountPercentage: 10.99,
     rating: 4.7,
@@ -431,8 +427,7 @@ export const Products: IProducts[] = [
   {
     id: 23,
     title: 'Orange Essence Food Flavou',
-    description:
-      'Specifications of Orange Essence Food Flavour For Cakes and Baking Food Item',
+    description: 'Specifications of Orange Essence Food Flavour For Cakes and Baking Food Item',
     price: 14,
     discountPercentage: 8.04,
     rating: 4.85,
@@ -490,8 +485,7 @@ export const Products: IProducts[] = [
   {
     id: 26,
     title: 'Plant Hanger For Home',
-    description:
-      'Boho Decor Plant Hanger For Home Wall Decoration Macrame Wall Hanging Shelf',
+    description: 'Boho Decor Plant Hanger For Home Wall Decoration Macrame Wall Hanging Shelf',
     price: 41,
     discountPercentage: 17.86,
     rating: 4.08,
@@ -610,8 +604,7 @@ export const Products: IProducts[] = [
   {
     id: 32,
     title: 'Sofa for Coffe Cafe',
-    description:
-      'Ratttan Outdoor furniture Set Waterproof  Rattan Sofa for Coffe Cafe',
+    description: 'Ratttan Outdoor furniture Set Waterproof  Rattan Sofa for Coffe Cafe',
     price: 50,
     discountPercentage: 15.59,
     rating: 4.74,
@@ -629,8 +622,7 @@ export const Products: IProducts[] = [
   {
     id: 33,
     title: '3 Tier Corner Shelves',
-    description:
-      '3 Tier Corner Shelves | 3 PCs Wall Mount Kitchen Shelf | Floating Bedroom Shelf',
+    description: '3 Tier Corner Shelves | 3 PCs Wall Mount Kitchen Shelf | Floating Bedroom Shelf',
     price: 700,
     discountPercentage: 17,
     rating: 4.31,
@@ -649,8 +641,7 @@ export const Products: IProducts[] = [
   {
     id: 34,
     title: 'Plastic Table',
-    description:
-      'V﻿ery good quality plastic table for multi purpose now in reasonable price',
+    description: 'V﻿ery good quality plastic table for multi purpose now in reasonable price',
     price: 50,
     discountPercentage: 4,
     rating: 4.01,
@@ -803,8 +794,7 @@ export const Products: IProducts[] = [
   {
     id: 42,
     title: 'Stiched Kurta plus trouser',
-    description:
-      'FABRIC: LILEIN CHEST: 21 LENGHT: 37 TROUSER: (38) :ARABIC LILEIN',
+    description: 'FABRIC: LILEIN CHEST: 21 LENGHT: 37 TROUSER: (38) :ARABIC LILEIN',
     price: 80,
     discountPercentage: 15.37,
     rating: 4.05,
@@ -823,8 +813,7 @@ export const Products: IProducts[] = [
   {
     id: 43,
     title: 'frock gold printed',
-    description:
-      'Ghazi fabric long frock gold printed ready to wear stitched collection (G992)',
+    description: 'Ghazi fabric long frock gold printed ready to wear stitched collection (G992)',
     price: 600,
     discountPercentage: 15.55,
     rating: 4.31,
@@ -883,8 +872,7 @@ export const Products: IProducts[] = [
   {
     id: 46,
     title: "women's shoes",
-    description:
-      'Close: Lace, Style with bottom: Increased inside, Sole Material: Rubber',
+    description: 'Close: Lace, Style with bottom: Increased inside, Sole Material: Rubber',
     price: 40,
     discountPercentage: 16.96,
     rating: 4.14,
@@ -903,8 +891,7 @@ export const Products: IProducts[] = [
   {
     id: 47,
     title: 'Sneaker shoes',
-    description:
-      'Synthetic Leather Casual Sneaker shoes for Women/girls Sneakers For Women',
+    description: 'Synthetic Leather Casual Sneaker shoes for Women/girls Sneakers For Women',
     price: 120,
     discountPercentage: 10.37,
     rating: 4.19,
@@ -922,8 +909,7 @@ export const Products: IProducts[] = [
   {
     id: 48,
     title: 'Women Strip Heel',
-    description:
-      'Features: Flip-flops, Mid Heel, Comfortable, Striped Heel, Antiskid, Striped',
+    description: 'Features: Flip-flops, Mid Heel, Comfortable, Striped Heel, Antiskid, Striped',
     price: 40,
     discountPercentage: 10.83,
     rating: 4.02,
@@ -961,8 +947,7 @@ export const Products: IProducts[] = [
   {
     id: 50,
     title: 'Women Shoes',
-    description:
-      '2020 New Arrivals Genuine Leather Fashion Trend Platform Summer Women Shoes',
+    description: '2020 New Arrivals Genuine Leather Fashion Trend Platform Summer Women Shoes',
     price: 36,
     discountPercentage: 16.87,
     rating: 4.33,
@@ -1076,8 +1061,7 @@ export const Products: IProducts[] = [
   {
     id: 56,
     title: 'Sneakers Joggers Shoes',
-    description:
-      'Gender: Men , Colors: Same as DisplayedCondition: 100% Brand New',
+    description: 'Gender: Men , Colors: Same as DisplayedCondition: 100% Brand New',
     price: 40,
     discountPercentage: 12.57,
     rating: 4.38,
@@ -1137,8 +1121,7 @@ export const Products: IProducts[] = [
   {
     id: 59,
     title: 'Spring and summershoes',
-    description:
-      'Comfortable stretch cloth, lightweight body; ,rubber sole, anti-skid wear;',
+    description: 'Comfortable stretch cloth, lightweight body; ,rubber sole, anti-skid wear;',
     price: 20,
     discountPercentage: 8.71,
     rating: 4.33,
@@ -1157,8 +1140,7 @@ export const Products: IProducts[] = [
   {
     id: 60,
     title: 'Stylish Casual Jeans Shoes',
-    description:
-      'High Quality ,Stylish design ,Comfortable wear ,FAshion ,Durable',
+    description: 'High Quality ,Stylish design ,Comfortable wear ,FAshion ,Durable',
     price: 58,
     discountPercentage: 7.55,
     rating: 4.55,
@@ -1210,8 +1192,7 @@ export const Products: IProducts[] = [
   {
     id: 63,
     title: 'Royal Blue Premium Watch',
-    description:
-      'Men Silver Chain Royal Blue Premium Watch Latest Analog Watch',
+    description: 'Men Silver Chain Royal Blue Premium Watch Latest Analog Watch',
     price: 50,
     discountPercentage: 2.56,
     rating: 4.89,
@@ -1229,8 +1210,7 @@ export const Products: IProducts[] = [
   {
     id: 64,
     title: 'Leather Strap Skeleton Watch',
-    description:
-      'Leather Strap Skeleton Watch for Men - Stylish and Latest Design',
+    description: 'Leather Strap Skeleton Watch for Men - Stylish and Latest Design',
     price: 46,
     discountPercentage: 10.2,
     rating: 4.98,
@@ -1477,8 +1457,7 @@ export const Products: IProducts[] = [
   {
     id: 77,
     title: 'Rose Ring',
-    description:
-      'Brand: The Greetings Flower Colour: RedRing Colour: GoldenSize: Adjustable',
+    description: 'Brand: The Greetings Flower Colour: RedRing Colour: GoldenSize: Adjustable',
     price: 100,
     discountPercentage: 3.22,
     rating: 4.21,
@@ -1799,8 +1778,7 @@ export const Products: IProducts[] = [
   {
     id: 94,
     title: 'new arrivals Fashion motocross goggles',
-    description:
-      'new arrivals Fashion motocross goggles motorcycle motocross racing motorcycle',
+    description: 'new arrivals Fashion motocross goggles motorcycle motocross racing motorcycle',
     price: 900,
     discountPercentage: 3.85,
     rating: 4.06,

@@ -3,59 +3,63 @@
   width: 100%;
   text-align: left;
 
-  &__search {
-    margin: 10px 0 20px;
-    font-weight: 400;
-    font-size: 11px;
-    line-height: 13px;
-  }
-
   &__found {
-    margin-bottom: 15px;
     font-weight: 500;
     font-size: 12px;
+    margin: 15px 0;
 
-    &-category {
-      font-weight: 600;
-      font-size: 20px;
-      line-height: 24px;
-      letter-spacing: 0.03em;
-      color: $selected-background;
+    & span:first-child {
+      font-family: inherit;
+      font-weight: 500;
+      font-size: 14px;
+      color: #2C2C31;
     }
   }
 }
 
 .search {
   border: 1px solid $menu-background;
-  background: $background;
+  background: $text-white;
   border-radius: 5px;
-  width: 344px;
   height: 36px;
+  width: 344px;
   padding: 0px;
   display: flex;
   font-family: 'Montserrat', sans-serif;
+  position: relative;
 
-  .search__field {
+  &__field {
     display: block;
     box-sizing: border-box;
     padding: 2px 8px;
-    width: 308px;
+    width: 344px;
     margin: 0px;
     border: none;
     outline: 0;
     font-family: inherit;
     font-size: 13px;
     font-weight: 500;
-    color: $selected-background;
+    color: $dark-background;
+
+    &:focus {
+      box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2);
+    }
+    &::-ms-clear,
+    &::-ms-reveal {
+      display: none;
+    }
   }
 
   &::after {
     display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
     width: 37px;
     height: 37px;
-    cursor: pointer;
     background: url('../images/search.svg') no-repeat center center;
     content: '';
+    z-index: 100;
   }
 }
 
@@ -93,7 +97,7 @@
       padding: 0 15px 0 12px;
       margin-right: 50px;
       cursor: pointer;
-      color: $selected-background;
+      color: $dark-background;
       background-image: url("data:image/svg+xml,%3Csvg width='8' height='6' viewBox='0 0 8 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M8 0.605957L0 0.605957L4 5.5601L8 0.605957Z' fill='black' fill-opacity='0.87'/%3E%3C/svg%3E%0A");
       background-repeat: no-repeat;
       background-position: right .8em top 53%;
@@ -175,7 +179,7 @@
     }
 
     &::-webkit-scrollbar-thumb {
-      background-color: $selected-background;
+      background-color: $dark-background;
       width: 5px;
     }
 
@@ -192,13 +196,14 @@
   }
 }
 
-.input-checkbox {
+.input-checkbox__category,
+.input-checkbox__brand {
   cursor: pointer;
   width: 14px;
   height: 14px;
 
   &:checked {
-    accent-color: $selected-background;
+    accent-color: $dark-background;
   }
 }
 
@@ -229,7 +234,7 @@
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    background-color: $selected-background;
+    background-color: $dark-background;
     border-radius: 2px;
     width: 99%;
     display: block;
@@ -238,7 +243,7 @@
 
     &::-webkit-slider-thumb {
       pointer-events: all;
-      box-shadow: 0 0 1px 1px $selected-background;
+      box-shadow: 0 0 1px 1px $dark-background;
       -webkit-appearance: none;
       height: 15px;
       width: 15px;
@@ -256,12 +261,51 @@
   }
 }
 
+.filters-btns {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: space-around;
+
+  &__reset,
+  &__copy {
+    width: 115px;
+    height: 35px;
+    border: none;
+    border-radius: 2px;
+    background-color: $dark-background;
+    color: $text-white;
+    font-weight: 500;
+    font-size: 12px;
+    font-family: inherit;
+    cursor: pointer;
+    transition: .2s;
+
+    &.copied {
+      background-color: $discount-background;
+      &:hover {
+        background-color: $discount-background;
+      }
+    }
+    &:hover {
+      background-color: $btn-hover;
+    }
+  }
+}
 
 .products {
   display: flex;
   justify-content: space-between;
   width: 100%;
   margin: 30px auto;
+
+  &__no-found {
+    display: none;
+    position: absolute;
+    left: 55%;
+    font-size: 18px;
+    margin: 20px auto;
+  }
 
   &__container {
     display: grid;
@@ -273,6 +317,11 @@
   &__item {
     width: 295px;
     border: 1px solid #ddd;
+    max-height: 425px;
+
+    &.big {
+      width: 98%;
+    }
   }
 
   &__card {
@@ -288,8 +337,8 @@
       position: absolute;
       top: 0;
       left: 0;
-      background-color: $cart-count-background;
-      color: $cart-count;
+      background-color: $discount-background;
+      color: $text-white;
       width: 60px;
       height: 20px;
       font-weight: 600;
@@ -319,7 +368,7 @@
     &-price {
 
       &_old {
-        color: $menu;
+        color: $dark-background;
         font-family: inherit;
         font-weight: 500;
         font-size: 13px;
@@ -343,14 +392,14 @@
         font-family: inherit;
         font-weight: 400;
         font-size: 13px;
-        color: $menu;
+        color: $dark-background;
       }
 
       &_category {
         font-family: inherit;
         font-weight: 500;
         font-size: 12px;
-        color: $menu;
+        color: $dark-background;
         opacity: 0.6;
       }
     }
@@ -362,7 +411,7 @@
         font-family: inherit;
         font-weight: 500;
         font-size: 12px;
-        color: $menu;
+        color: $dark-background;
         opacity: 0.6;
       }
 
@@ -370,7 +419,7 @@
         font-family: inherit;
         font-weight: 400;
         font-size: 13px;
-        color: $menu;
+        color: $dark-background;
       }
     }
 
@@ -381,7 +430,7 @@
         font-family: inherit;
         font-weight: 500;
         font-size: 12px;
-        color: $menu;
+        color: $dark-background;
         opacity: 0.6;
       }
 
@@ -389,7 +438,7 @@
         font-family: inherit;
         font-weight: 400;
         font-size: 13px;
-        color: $menu;
+        color: $dark-background;
       }
     }
 
@@ -400,7 +449,7 @@
         font-family: inherit;
         font-weight: 500;
         font-size: 12px;
-        color: $menu;
+        color: $dark-background;
         opacity: 0.6;
       }
 
@@ -408,22 +457,22 @@
         font-family: inherit;
         font-weight: 400;
         font-size: 13px;
-        color: $menu;
+        color: $dark-background;
       }
     }
 
-    &_btn {
+    &_btn-cart {
       width: 115px;
       height: 35px;
       border: none;
       border-radius: 2px;
-      background-color: $btn-background;
-      color: $main;
+      background-color: $dark-background;
+      color: $text-white;
       font-weight: 500;
       font-size: 12px;
       font-family: inherit;
       margin-top: 30px;
-      margin-right: 20px;
+      margin-left: auto;
       cursor: pointer;
       display: flex;
       align-items: center;
@@ -433,7 +482,7 @@
       transition: .2s;
 
       &.active {
-        background-color: $cart-count-background;
+        background-color: $discount-background;
       }
 
       &::after {

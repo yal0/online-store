@@ -19,9 +19,9 @@
         </a>
         <div class="top-menu">
             <div class="wrapper">
-                <div class="sum">Cart total: <span class="sum__value">€574.00</span></div>
+                <div class="sum">Cart total: <span class="sum__value">€0</span></div>
                 <div class="cart">
-                    <div class="cart__count">5</div>
+                    <div class="cart__count">0</div>
                 </div>
             </div>
         </div>
@@ -29,8 +29,7 @@
 
     <main class="main" id="main">
         <div class="info wrapper">
-            <p class="info__search">Search by category «<span class="info__search-category">Smartphones</span>»</p>
-            <p class="info__found"><span class="info__found-category">Smartphones </span><span class="info__found-count">100</span> results</p>
+            <p class="info__found"><span>Found </span><span class="info__found-count">100</span> results</p>
         </div>
         <div class="sorts">
             <div class="sorts__container wrapper">
@@ -39,7 +38,7 @@
                         <img src="./assets/images/menu3x3.svg" alt="view-small" width="40px">
                     </div>
                     <div class="view__big">
-                        <img src="./assets/images/menu5x5.svg" alt="view-big" width="40px">
+                        <img src="./assets/images/menu2x2.svg" alt="view-big" width="40px">
                     </div>
                 </div>
                 <div class="sorts__bar">
@@ -53,7 +52,7 @@
                         <option value="discount-DESC">Discount ↓</option>
                     </select>
                     <div class="search">
-                        <input class="search__field" type="search">
+                        <input class="search__field" type="text">
                     </div>
                 </div>
             </div>
@@ -73,9 +72,9 @@
                     <h3 class="filters__title">Price</h3>
                     <div class="price-range">
                         <div class="price-range__data">
-                            <div class="price-range__data-in">57</div>
+                            <div class="price-range__data-in">€57</div>
                             <div class="price-range__data-arrow">⟷</div>
-                            <div class="price-range__data-out">1749</div>
+                            <div class="price-range__data-out">€1749</div>
                         </div>
                         <div class="price-range__input-container">
                             <input type="range" class="price-range__input price-range__input_left" min="57" max="1749" value="57" step="1">
@@ -97,6 +96,11 @@
                             <input type="range" class="stock-range__input stock-range__input_right" min="1" max="150" value="150" step="1">
                         </div>
                     </div>
+                </div>
+
+                <div class="filters-btns">
+                    <button class="filters-btns__reset">Reset filters</button>
+                    <button class="filters-btns__copy">Copy link</button>
                 </div>
             </div>
             <div class="products__container" id="productsContainer">

@@ -1,6 +1,6 @@
 .footer {
-    background: $footer-background;
-    color: $footer;
+    background: $dark-background;
+    color: $text-white;
 
     .wrapper {
         display: flex;
@@ -11,7 +11,7 @@
 
     &__link {
         display: block;
-        color: $footer;
+        color: $text-white;
         text-decoration: none;
         &:hover {
             text-decoration: underline;

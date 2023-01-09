@@ -28,21 +28,21 @@
 .cart {
     width: 36px;
     height: 36px;
-    background: $background url('../images/cart.svg') no-repeat center center;
+    background: $text-white url('../images/cart.svg') no-repeat center center;
     border-radius: 50%;
     cursor: pointer;
 
     &__count {
         position: relative;
-        right: -30px;
-        top: -7px;
-        color: $cart-count;
-        background: $cart-count-background;
+        right: -29px;
+        top: -6px;
+        color: $text-white;
+        background: $discount-background;
         font-weight: bold;
         width: 20px;
         height: 20px;
         border-radius: 50%;
         text-align: center;
-        padding: 3px;
+        padding: 2px;
     }
 }
