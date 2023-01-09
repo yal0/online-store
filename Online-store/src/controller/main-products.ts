@@ -15,10 +15,12 @@ export class MainPageController {
     this.copyLink();
     this.addToCart();
     this.searchText();
+    this.toggleView();
   }
 
   copyLink() {
-    checkSelector(document, '.filters-btns__copy').addEventListener('click', (e) => {
+    const btnCopyLink = checkSelector(document, '.filters-btns__copy');
+    btnCopyLink.addEventListener('click', (e) => {
       (async () => {
         await navigator.clipboard.writeText(window.location.href);
         const target = e.target as HTMLButtonElement;
@@ -138,6 +140,30 @@ export class MainPageController {
         noFoundProducts.style.display = 'none';
       }
     }, 100);
+  }
+
+  toggleView() {
+    const btnViewSmall = checkSelector(document, '.view__small');
+    const btnViewBig = checkSelector(document, '.view__big');
+    const productsContainer = checkSelector(document, '.products__container') as HTMLDivElement;
+    const productsItems: NodeListOf<HTMLElement> = document.querySelectorAll('.products__item');
+    btnViewSmall.addEventListener('click', () => {
+      btnViewSmall.classList.add('active');
+      btnViewBig.classList.remove('active');
+      productsContainer.style.gridTemplateColumns = 'repeat(3, 1fr)';
+      productsItems.forEach((product: HTMLElement) => {
+        product.classList.remove('big');
+      });
+    });
+
+    btnViewBig.addEventListener('click', () => {
+      btnViewBig.classList.add('active');
+      btnViewSmall.classList.remove('active');
+      productsContainer.style.gridTemplateColumns = 'repeat(2, 1fr)';
+      productsItems.forEach((product: HTMLElement) => {
+        product.classList.add('big');
+      });
+    });
   }
 }
 // const priceInputLeft = document.getElementById(

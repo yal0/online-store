@@ -3,7 +3,7 @@ import { checkSelector } from '../utils/checkSelector';
 import { localStorageProducts } from '../utils/localStorageProducs';
 import '../assets/images/logo.svg';
 import '../assets/images/menu3x3.svg';
-import '../assets/images/menu5x5.svg';
+import '../assets/images/menu2x2.svg';
 import '../assets/images/rs_school.svg';
 import '../assets/styles/style.scss';
 

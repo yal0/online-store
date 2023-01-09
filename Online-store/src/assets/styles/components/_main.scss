@@ -324,6 +324,9 @@
   &__item {
     width: 295px;
     border: 1px solid #ddd;
+    &.big {
+      width: 98%;
+    }
   }
 
   &__card {
@@ -474,7 +477,7 @@
       font-size: 12px;
       font-family: inherit;
       margin-top: 30px;
-      margin-right: 20px;
+      margin-left: auto;
       cursor: pointer;
       display: flex;
       align-items: center;
