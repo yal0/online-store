@@ -19,7 +19,7 @@
 
 .search {
   border: 1px solid $menu-background;
-  background: $background;
+  background: $text-white;
   border-radius: 5px;
   height: 36px;
   width: 344px;
@@ -39,7 +39,7 @@
     font-family: inherit;
     font-size: 13px;
     font-weight: 500;
-    color: $selected-background;
+    color: $dark-background;
 
     &:focus {
       box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2);
@@ -97,7 +97,7 @@
       padding: 0 15px 0 12px;
       margin-right: 50px;
       cursor: pointer;
-      color: $selected-background;
+      color: $dark-background;
       background-image: url("data:image/svg+xml,%3Csvg width='8' height='6' viewBox='0 0 8 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M8 0.605957L0 0.605957L4 5.5601L8 0.605957Z' fill='black' fill-opacity='0.87'/%3E%3C/svg%3E%0A");
       background-repeat: no-repeat;
       background-position: right .8em top 53%;
@@ -179,7 +179,7 @@
     }
 
     &::-webkit-scrollbar-thumb {
-      background-color: $selected-background;
+      background-color: $dark-background;
       width: 5px;
     }
 
@@ -202,7 +202,7 @@
   height: 14px;
 
   &:checked {
-    accent-color: $selected-background;
+    accent-color: $dark-background;
   }
 }
 
@@ -233,7 +233,7 @@
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    background-color: $selected-background;
+    background-color: $dark-background;
     border-radius: 2px;
     width: 99%;
     display: block;
@@ -242,7 +242,7 @@
 
     &::-webkit-slider-thumb {
       pointer-events: all;
-      box-shadow: 0 0 1px 1px $selected-background;
+      box-shadow: 0 0 1px 1px $dark-background;
       -webkit-appearance: none;
       height: 15px;
       width: 15px;
@@ -272,8 +272,8 @@
     height: 35px;
     border: none;
     border-radius: 2px;
-    background-color: $btn-background;
-    color: $main;
+    background-color: $dark-background;
+    color: $text-white;
     font-weight: 500;
     font-size: 12px;
     font-family: inherit;
@@ -336,8 +336,8 @@
       position: absolute;
       top: 0;
       left: 0;
-      background-color: $cart-count-background;
-      color: $cart-count;
+      background-color: $discount-background;
+      color: $text-white;
       width: 60px;
       height: 20px;
       font-weight: 600;
@@ -367,7 +367,7 @@
     &-price {
 
       &_old {
-        color: $menu;
+        color: $dark-background;
         font-family: inherit;
         font-weight: 500;
         font-size: 13px;
@@ -391,14 +391,14 @@
         font-family: inherit;
         font-weight: 400;
         font-size: 13px;
-        color: $menu;
+        color: $dark-background;
       }
 
       &_category {
         font-family: inherit;
         font-weight: 500;
         font-size: 12px;
-        color: $menu;
+        color: $dark-background;
         opacity: 0.6;
       }
     }
@@ -410,7 +410,7 @@
         font-family: inherit;
         font-weight: 500;
         font-size: 12px;
-        color: $menu;
+        color: $dark-background;
         opacity: 0.6;
       }
 
@@ -418,7 +418,7 @@
         font-family: inherit;
         font-weight: 400;
         font-size: 13px;
-        color: $menu;
+        color: $dark-background;
       }
     }
 
@@ -429,7 +429,7 @@
         font-family: inherit;
         font-weight: 500;
         font-size: 12px;
-        color: $menu;
+        color: $dark-background;
         opacity: 0.6;
       }
 
@@ -437,7 +437,7 @@
         font-family: inherit;
         font-weight: 400;
         font-size: 13px;
-        color: $menu;
+        color: $dark-background;
       }
     }
 
@@ -448,7 +448,7 @@
         font-family: inherit;
         font-weight: 500;
         font-size: 12px;
-        color: $menu;
+        color: $dark-background;
         opacity: 0.6;
       }
 
@@ -456,7 +456,7 @@
         font-family: inherit;
         font-weight: 400;
         font-size: 13px;
-        color: $menu;
+        color: $dark-background;
       }
     }
 
@@ -465,8 +465,8 @@
       height: 35px;
       border: none;
       border-radius: 2px;
-      background-color: $btn-background;
-      color: $main;
+      background-color: $dark-background;
+      color: $text-white;
       font-weight: 500;
       font-size: 12px;
       font-family: inherit;
@@ -481,7 +481,7 @@
       transition: .2s;
 
       &.active {
-        background-color: $cart-count-background;
+        background-color: $discount-background;
       }
 
       &::after {
