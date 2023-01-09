@@ -77,8 +77,7 @@ export class MainPageController {
     const productsItems: NodeListOf<HTMLElement> = document.querySelectorAll('.products__item');
     const searchInput = checkSelector(document, '.search__field') as HTMLInputElement;
     const filter = searchInput.value.toLowerCase();
-
-    productsItems.forEach((product) => {
+    productsItems.forEach((product: HTMLElement) => {
       const productDiscount = checkSelector(product, '.products__card_discount');
       const productRating = checkSelector(product, '.products__info-rating');
       const productPriceOld = checkSelector(product, '.products__info-price_old');
@@ -118,6 +117,21 @@ export class MainPageController {
       }
     });
     searchInput.addEventListener('input', () => this.searchText());
+    this.foundCount();
+  }
+
+  foundCount() {
+    const productsItems: NodeListOf<HTMLElement> = document.querySelectorAll('.products__item');
+    const infoFoundCount = checkSelector(document, '.info__found-count');
+    let foundCounter = 0;
+    productsItems.forEach((product: HTMLElement) => {
+      if (product.style.display === 'block') {
+        foundCounter++;
+      }
+    });
+    setTimeout(() => {
+      infoFoundCount.innerHTML = `${foundCounter.toString()}`;
+    }, 100);
   }
 }
 // const priceInputLeft = document.getElementById(
