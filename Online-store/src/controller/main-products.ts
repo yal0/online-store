@@ -17,6 +17,7 @@ export class MainPageController {
     this.searchText();
     this.toggleView();
     this.sort();
+    this.filterByCategoryAndBrend();
   }
 
   copyLink() {
@@ -99,27 +100,30 @@ export class MainPageController {
           return el.textContent.toLowerCase().indexOf(filter);
         }
       };
-
-      if (
-        productCheck(productDiscount) !== -1 ||
-        productCheck(productRating) !== -1 ||
-        productCheck(productPriceOld) !== -1 ||
-        productCheck(productPriceNew) !== -1 ||
-        productCheck(productTitle) !== -1 ||
-        productCheck(productCategory) !== -1 ||
-        productCheck(productRatingSpan) !== -1 ||
-        productCheck(productRatingCount) !== -1 ||
-        productCheck(productBrandSpan) !== -1 ||
-        productCheck(productBrandName) !== -1 ||
-        productCheck(productStockSpan) !== -1 ||
-        productCheck(productStockCount) !== -1
-      ) {
-        product.style.display = 'block';
-      } else {
-        product.style.display = 'none';
+      if (product.style.display !== 'none') {
+        if (
+          productCheck(productDiscount) !== -1 ||
+          productCheck(productRating) !== -1 ||
+          productCheck(productPriceOld) !== -1 ||
+          productCheck(productPriceNew) !== -1 ||
+          productCheck(productTitle) !== -1 ||
+          productCheck(productCategory) !== -1 ||
+          productCheck(productRatingSpan) !== -1 ||
+          productCheck(productRatingCount) !== -1 ||
+          productCheck(productBrandSpan) !== -1 ||
+          productCheck(productBrandName) !== -1 ||
+          productCheck(productStockSpan) !== -1 ||
+          productCheck(productStockCount) !== -1
+        ) {
+          product.style.display = 'block';
+        } else {
+          product.style.display = 'none';
+        }
       }
     });
+
     searchInput.addEventListener('input', () => this.searchText());
+    this.filterByCategoryAndBrend();
     this.foundCount();
   }
 
@@ -209,6 +213,64 @@ export class MainPageController {
     }
 
     sortSelect.addEventListener('change', sortProducts);
+  }
+
+  filterByCategoryAndBrend() {
+    const inputCategory: NodeListOf<HTMLInputElement> = document.querySelectorAll(
+      '.input-checkbox__category'
+    );
+    const inputBrand: NodeListOf<HTMLInputElement> =
+      document.querySelectorAll('.input-checkbox__brand');
+    const productsItems: NodeListOf<HTMLDivElement> = document.querySelectorAll('.products__item');
+
+    function checkCheckboxes() {
+      const checkboxesCategoryArr: string[] = [];
+      const checkboxesBrandArr: string[] = [];
+
+      inputCategory.forEach((checkbox) => {
+        if (checkbox instanceof HTMLInputElement && checkbox.checked) {
+          checkboxesCategoryArr.includes(checkbox.id)
+            ? null
+            : checkboxesCategoryArr.push(checkbox.id);
+        }
+      });
+      inputBrand.forEach((checkbox) => {
+        if (checkbox instanceof HTMLInputElement && checkbox.checked) {
+          checkboxesBrandArr.includes(checkbox.id) ? null : checkboxesBrandArr.push(checkbox.id);
+        }
+      });
+
+      productsItems.forEach((product: HTMLDivElement) => {
+        const productCategory = checkSelector(product, '.products__info-name_category');
+        const productBrandName = checkSelector(product, '.products__info-brand_name');
+        if (
+          checkboxesCategoryArr.includes(productCategory.innerHTML.toLowerCase()) ||
+          checkboxesCategoryArr.length === 0
+        ) {
+          product.style.display = 'block';
+        } else {
+          product.style.display = 'none';
+        }
+        if (
+          (checkboxesBrandArr.includes(productBrandName.innerHTML) ||
+            checkboxesBrandArr.length === 0) &&
+          product.style.display !== 'none'
+        ) {
+          product.style.display = 'block';
+        } else {
+          product.style.display = 'none';
+        }
+      });
+    }
+
+    inputCategory.forEach((checkbox) => {
+      checkbox.addEventListener('input', checkCheckboxes);
+      checkbox.addEventListener('input', this.foundCount.bind(MainPageController));
+    });
+    inputBrand.forEach((checkbox) => {
+      checkbox.addEventListener('input', checkCheckboxes);
+      checkbox.addEventListener('input', this.foundCount.bind(MainPageController));
+    });
   }
 }
 // const priceInputLeft = document.getElementById(

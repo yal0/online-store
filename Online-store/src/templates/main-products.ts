@@ -86,14 +86,13 @@ export class MainPageView {
           categoryArr.push(category);
           htmlFiltersCategory += `
           <div class="filters__list-checkbox">
-            <input type="checkbox" class="input-checkbox" id="${
+            <input type="checkbox" class="input-checkbox__category" id="${
               categoryArr[categoryArr.length - 1]
             }">
             <label for="${categoryArr[categoryArr.length - 1]}">${
             categoryArr[categoryArr.length - 1][0].toUpperCase() +
             categoryArr[categoryArr.length - 1].slice(1)
           }   </label>
-            <span>(5/5)</span>
           </div>
           `;
         }
@@ -103,9 +102,10 @@ export class MainPageView {
           brandArr.push(brand);
           htmlFiltersBrand += `
           <div class="filters__list-checkbox">
-            <input type="checkbox" class="input-checkbox" id="${brandArr[brandArr.length - 1]}">
+            <input type="checkbox" class="input-checkbox__brand" id="${
+              brandArr[brandArr.length - 1]
+            }">
             <label for="${brandArr[brandArr.length - 1]}">${brandArr[brandArr.length - 1]} </label>
-            <span>(1/1)</span>
           </div>
           `;
         }

@@ -3,24 +3,16 @@
   width: 100%;
   text-align: left;
 
-  &__search {
-    margin: 10px 0 20px;
-    font-weight: 400;
-    font-size: 11px;
-    line-height: 13px;
-  }
-
   &__found {
-    margin-bottom: 15px;
     font-weight: 500;
     font-size: 12px;
+    margin: 15px 0;
 
-    &-category {
-      font-weight: 600;
-      font-size: 20px;
-      line-height: 24px;
-      letter-spacing: 0.03em;
-      color: $selected-background;
+    & span:first-child {
+      font-family: inherit;
+      font-weight: 500;
+      font-size: 14px;
+      color: #2C2C31;
     }
   }
 }
@@ -324,6 +316,8 @@
   &__item {
     width: 295px;
     border: 1px solid #ddd;
+    max-height: 425px;
+
     &.big {
       width: 98%;
     }
