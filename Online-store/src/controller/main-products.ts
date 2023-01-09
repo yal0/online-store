@@ -16,6 +16,7 @@ export class MainPageController {
     this.addToCart();
     this.searchText();
     this.toggleView();
+    this.sort();
   }
 
   copyLink() {
@@ -35,7 +36,7 @@ export class MainPageController {
   }
 
   addToCart() {
-    const productItems: NodeListOf<HTMLElement> = document.querySelectorAll('.products__item');
+    const productItems: NodeListOf<HTMLDivElement> = document.querySelectorAll('.products__item');
     let productsArr: localStorageProducts[] = [];
     let cartSumNum = 0;
     productItems.forEach((item) => {
@@ -76,10 +77,10 @@ export class MainPageController {
   }
 
   searchText() {
-    const productsItems: NodeListOf<HTMLElement> = document.querySelectorAll('.products__item');
+    const productsItems: NodeListOf<HTMLDivElement> = document.querySelectorAll('.products__item');
     const searchInput = checkSelector(document, '.search__field') as HTMLInputElement;
     const filter = searchInput.value.toLowerCase();
-    productsItems.forEach((product: HTMLElement) => {
+    productsItems.forEach((product: HTMLDivElement) => {
       const productDiscount = checkSelector(product, '.products__card_discount');
       const productRating = checkSelector(product, '.products__info-rating');
       const productPriceOld = checkSelector(product, '.products__info-price_old');
@@ -145,7 +146,7 @@ export class MainPageController {
   toggleView() {
     const btnViewSmall = checkSelector(document, '.view__small');
     const btnViewBig = checkSelector(document, '.view__big');
-    const productsContainer = checkSelector(document, '.products__container') as HTMLDivElement;
+    const productsContainer = checkSelector(document, '#productsContainer') as HTMLDivElement;
     const productsItems: NodeListOf<HTMLElement> = document.querySelectorAll('.products__item');
     btnViewSmall.addEventListener('click', () => {
       btnViewSmall.classList.add('active');
@@ -164,6 +165,50 @@ export class MainPageController {
         product.classList.add('big');
       });
     });
+  }
+
+  sort() {
+    const productsItems: NodeListOf<HTMLDivElement> = document.querySelectorAll('.products__item');
+    type sortProduct = {
+      el: HTMLDivElement;
+      price: number;
+      rating: number;
+      discount: number;
+    };
+
+    const sortProductArr: sortProduct[] = [];
+
+    productsItems.forEach((product) => {
+      const price = Number(product.dataset.price);
+      const rating = Number(checkSelector(product, '.products__info-rating_count').innerHTML);
+      const discount = Number(
+        checkSelector(product, '.products__card_discount').innerHTML.slice(1, -1)
+      );
+      sortProductArr.push({
+        el: product,
+        price: price,
+        rating: rating,
+        discount: discount,
+      });
+    });
+    const productsContainer = checkSelector(document, '#productsContainer');
+    const sortSelect = checkSelector(document, '.sorts__bar_select') as HTMLOptionElement;
+    function sortProducts() {
+      if (sortSelect.value === 'price-ASC') sortProductArr.sort((a, b) => a.price - b.price);
+      if (sortSelect.value === 'price-DESC') sortProductArr.sort((a, b) => b.price - a.price);
+      if (sortSelect.value === 'rating-ASC') sortProductArr.sort((a, b) => a.rating - b.rating);
+      if (sortSelect.value === 'rating-DESC') sortProductArr.sort((a, b) => b.rating - a.rating);
+      if (sortSelect.value === 'discount-ASC') {
+        sortProductArr.sort((a, b) => a.discount - b.discount);
+      }
+      if (sortSelect.value === 'discount-DESC') {
+        sortProductArr.sort((a, b) => b.discount - a.discount);
+      }
+
+      sortProductArr.forEach((el) => productsContainer.append(el.el));
+    }
+
+    sortSelect.addEventListener('change', sortProducts);
   }
 }
 // const priceInputLeft = document.getElementById(
