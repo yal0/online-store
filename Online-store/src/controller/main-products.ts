@@ -11,7 +11,7 @@ export class MainPageController {
     this.url = {};
   }
 
-  setupPage() {
+  startPage() {
     this.copyLink();
     this.addToCart();
     this.searchText();
@@ -123,6 +123,7 @@ export class MainPageController {
   foundCount() {
     const productsItems: NodeListOf<HTMLElement> = document.querySelectorAll('.products__item');
     const infoFoundCount = checkSelector(document, '.info__found-count');
+    const noFoundProducts = checkSelector(document, '.products__no-found') as HTMLElement;
     let foundCounter = 0;
     productsItems.forEach((product: HTMLElement) => {
       if (product.style.display === 'block') {
@@ -131,6 +132,11 @@ export class MainPageController {
     });
     setTimeout(() => {
       infoFoundCount.innerHTML = `${foundCounter.toString()}`;
+      if (foundCounter === 0) {
+        noFoundProducts.style.display = 'block';
+      } else {
+        noFoundProducts.style.display = 'none';
+      }
     }, 100);
   }
 }

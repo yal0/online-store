@@ -18,7 +18,7 @@ let productsArr: localStorageProducts[] = [];
 
 export class MainPageView {
   public renderProducts = (): void => {
-    let htmlCatalogProducts = '';
+    let htmlCatalogProducts = `<div class="products__no-found">No products found :(</div>`;
     let htmlFiltersCategory = '';
     let htmlFiltersBrand = '';
     const categoryArr: string[] = [];

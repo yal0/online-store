@@ -5,4 +5,4 @@ const mainPage = new MainPageView();
 const mainPageController = new MainPageController(mainPage);
 
 mainPage.renderProducts();
-mainPageController.setupPage();
+mainPageController.startPage();
