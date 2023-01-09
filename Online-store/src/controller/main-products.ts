@@ -4,13 +4,17 @@ import { localStorageProducts } from '../utils/localStorageProducs';
 
 export class MainPageController {
   view: MainPageView;
+  url: Partial<URL>;
+
   constructor(view: MainPageView) {
     this.view = view;
+    this.url = {};
   }
 
   setupPage() {
     this.copyLink();
     this.addToCart();
+    this.searchText();
   }
 
   copyLink() {
@@ -67,6 +71,53 @@ export class MainPageController {
       }
       itemBtn.addEventListener('click', toggleProductToCard);
     });
+  }
+
+  searchText() {
+    const productsItems: NodeListOf<HTMLElement> = document.querySelectorAll('.products__item');
+    const searchInput = checkSelector(document, '.search__field') as HTMLInputElement;
+    const filter = searchInput.value.toLowerCase();
+
+    productsItems.forEach((product) => {
+      const productDiscount = checkSelector(product, '.products__card_discount');
+      const productRating = checkSelector(product, '.products__info-rating');
+      const productPriceOld = checkSelector(product, '.products__info-price_old');
+      const productPriceNew = checkSelector(product, '.products__info-price_new');
+      const productTitle = checkSelector(product, '.products__info-name_title');
+      const productCategory = checkSelector(product, '.products__info-name_category');
+      const productRatingSpan = checkSelector(product, '.products__info-rating span');
+      const productRatingCount = checkSelector(product, '.products__info-rating_count');
+      const productBrandSpan = checkSelector(product, '.products__info-brand span');
+      const productBrandName = checkSelector(product, '.products__info-brand_name');
+      const productStockSpan = checkSelector(product, '.products__info-stock span');
+      const productStockCount = checkSelector(product, '.products__info-stock_count');
+
+      const productCheck = (el: Element) => {
+        if (el.textContent) {
+          return el.textContent.toLowerCase().indexOf(filter);
+        }
+      };
+
+      if (
+        productCheck(productDiscount) !== -1 ||
+        productCheck(productRating) !== -1 ||
+        productCheck(productPriceOld) !== -1 ||
+        productCheck(productPriceNew) !== -1 ||
+        productCheck(productTitle) !== -1 ||
+        productCheck(productCategory) !== -1 ||
+        productCheck(productRatingSpan) !== -1 ||
+        productCheck(productRatingCount) !== -1 ||
+        productCheck(productBrandSpan) !== -1 ||
+        productCheck(productBrandName) !== -1 ||
+        productCheck(productStockSpan) !== -1 ||
+        productCheck(productStockCount) !== -1
+      ) {
+        product.style.display = 'block';
+      } else {
+        product.style.display = 'none';
+      }
+    });
+    searchInput.addEventListener('input', () => this.searchText());
   }
 }
 // const priceInputLeft = document.getElementById(

@@ -29,17 +29,18 @@
   border: 1px solid $menu-background;
   background: $background;
   border-radius: 5px;
-  width: 344px;
   height: 36px;
+  width: 344px;
   padding: 0px;
   display: flex;
   font-family: 'Montserrat', sans-serif;
+  position: relative;
 
-  .search__field {
+  &__field {
     display: block;
     box-sizing: border-box;
     padding: 2px 8px;
-    width: 308px;
+    width: 344px;
     margin: 0px;
     border: none;
     outline: 0;
@@ -47,15 +48,26 @@
     font-size: 13px;
     font-weight: 500;
     color: $selected-background;
+
+    &:focus {
+      box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2);
+    }
+    &::-ms-clear,
+    &::-ms-reveal {
+      display: none;
+    }
   }
 
   &::after {
     display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
     width: 37px;
     height: 37px;
-    cursor: pointer;
     background: url('../images/search.svg') no-repeat center center;
     content: '';
+    z-index: 100;
   }
 }
 
