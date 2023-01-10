@@ -18,6 +18,7 @@ export class MainPageController {
     this.toggleView();
     this.sort();
     this.filterByCategoryAndBrend();
+    this.filterRange();
   }
 
   copyLink() {
@@ -144,7 +145,7 @@ export class MainPageController {
       } else {
         noFoundProducts.style.display = 'none';
       }
-    }, 100);
+    }, 200);
   }
 
   toggleView() {
@@ -223,7 +224,7 @@ export class MainPageController {
       document.querySelectorAll('.input-checkbox__brand');
     const productsItems: NodeListOf<HTMLDivElement> = document.querySelectorAll('.products__item');
 
-    function checkCheckboxes() {
+    const checkCheckboxes = () => {
       const checkboxesCategoryArr: string[] = [];
       const checkboxesBrandArr: string[] = [];
 
@@ -240,12 +241,24 @@ export class MainPageController {
         }
       });
 
+      const priceRangeIn = checkSelector(document, '.price-range__data-in');
+      const priceRangeOut = checkSelector(document, '.price-range__data-out');
+      const stockRangeIn = checkSelector(document, '.stock-range__data-in');
+      const stockRangeOut = checkSelector(document, '.stock-range__data-out');
+
       productsItems.forEach((product: HTMLDivElement) => {
         const productCategory = checkSelector(product, '.products__info-name_category');
         const productBrandName = checkSelector(product, '.products__info-brand_name');
+        const price = Number(product.dataset.price);
+        const stock = Number(checkSelector(product, '.products__info-stock_count').innerHTML);
+
         if (
-          checkboxesCategoryArr.includes(productCategory.innerHTML.toLowerCase()) ||
-          checkboxesCategoryArr.length === 0
+          stock >= Number(stockRangeIn.innerHTML) &&
+          stock <= Number(stockRangeOut.innerHTML) &&
+          price >= Number(priceRangeIn.innerHTML.slice(1)) &&
+          price <= Number(priceRangeOut.innerHTML.slice(1)) &&
+          (checkboxesCategoryArr.includes(productCategory.innerHTML.toLowerCase()) ||
+            checkboxesCategoryArr.length === 0)
         ) {
           product.style.display = 'block';
         } else {
@@ -261,47 +274,81 @@ export class MainPageController {
           product.style.display = 'none';
         }
       });
-    }
+      this.foundCount.bind(MainPageController)();
+    };
 
     inputCategory.forEach((checkbox) => {
       checkbox.addEventListener('input', checkCheckboxes);
-      checkbox.addEventListener('input', this.foundCount.bind(MainPageController));
     });
     inputBrand.forEach((checkbox) => {
       checkbox.addEventListener('input', checkCheckboxes);
-      checkbox.addEventListener('input', this.foundCount.bind(MainPageController));
     });
   }
+
+  filterRange() {
+    const priceRangeIn = checkSelector(document, '.price-range__data-in');
+    const priceRangeOut = checkSelector(document, '.price-range__data-out');
+    const priceRangeInputLeft = checkSelector(
+      document,
+      '.price-range__input_left'
+    ) as HTMLInputElement;
+    const priceRangeInputRight = checkSelector(
+      document,
+      '.price-range__input_right'
+    ) as HTMLInputElement;
+
+    const stockRangeIn = checkSelector(document, '.stock-range__data-in');
+    const stockRangeOut = checkSelector(document, '.stock-range__data-out');
+    const stockRangeInputLeft = checkSelector(
+      document,
+      '.stock-range__input_left'
+    ) as HTMLInputElement;
+    const stockRangeInputRight = checkSelector(
+      document,
+      '.stock-range__input_right'
+    ) as HTMLInputElement;
+
+    const productsItems: NodeListOf<HTMLDivElement> = document.querySelectorAll('.products__item');
+
+    const rangeChenge = () => {
+      priceRangeIn.innerHTML =
+        Number(priceRangeInputLeft.value) < Number(priceRangeInputRight.value)
+          ? `€${priceRangeInputLeft.value}`
+          : `€${priceRangeInputRight.value}`;
+      priceRangeOut.innerHTML =
+        Number(priceRangeInputRight.value) > Number(priceRangeInputLeft.value)
+          ? `€${priceRangeInputRight.value}`
+          : `€${priceRangeInputLeft.value}`;
+
+      stockRangeIn.innerHTML =
+        Number(stockRangeInputLeft.value) < Number(stockRangeInputRight.value)
+          ? stockRangeInputLeft.value
+          : stockRangeInputRight.value;
+      stockRangeOut.innerHTML =
+        Number(stockRangeInputRight.value) > Number(stockRangeInputLeft.value)
+          ? stockRangeInputRight.value
+          : stockRangeInputLeft.value;
+
+      productsItems.forEach((product: HTMLDivElement) => {
+        const price = Number(product.dataset.price);
+        const stock = Number(checkSelector(product, '.products__info-stock_count').innerHTML);
+        if (
+          stock >= Number(stockRangeIn.innerHTML) &&
+          stock <= Number(stockRangeOut.innerHTML) &&
+          price >= Number(priceRangeIn.innerHTML.slice(1)) &&
+          price <= Number(priceRangeOut.innerHTML.slice(1))
+        ) {
+          product.style.display = 'block';
+        } else {
+          product.style.display = 'none';
+        }
+      });
+      this.foundCount.bind(MainPageController)();
+    };
+
+    priceRangeInputLeft.addEventListener('change', rangeChenge);
+    priceRangeInputRight.addEventListener('change', rangeChenge);
+    stockRangeInputLeft.addEventListener('change', rangeChenge);
+    stockRangeInputRight.addEventListener('change', rangeChenge);
+  }
 }
-// const priceInputLeft = document.getElementById(
-//   'priceInputLeft'
-// ) as HTMLInputElement;
-// const priceInputRight = document.getElementById(
-//   'priceInputRight'
-// ) as HTMLInputElement;
-// const thumbLeft = document.querySelector(
-//   '.price-slider__thumb_left'
-// ) as HTMLElement;
-// const thumbRight = document.querySelector('.price-slider__thumb_right');
-// const priceRange = document.querySelector('price-slider__range') as HTMLElement;
-// let total = 100,
-//   skip = 0,
-//   limit = 100;
-
-// export class CatalogPage {
-
-// }
-// setLeftValue(): void {
-//   const min = parseInt(priceInputLeft.min);
-//   const max = parseInt(priceInputLeft.max);
-//   priceInputLeft.value = Math.min(
-//     parseInt(priceInputLeft.value),
-//     parseInt(priceInputLeft.value) - 1
-//   ).toString();
-//   const percent = ((+priceInputLeft.value - min) / (max - min)) * 100;
-//   thumbLeft.style.left = `${percent}%`;
-//   priceRange.style.left = `${percent}%`;
-//   priceInputLeft.addEventListener('input', setLeftValue);
-// }
-
-//priceInputRight.addEventListener('input', setRightValue);
