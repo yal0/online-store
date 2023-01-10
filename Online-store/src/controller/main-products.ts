@@ -261,8 +261,10 @@ export class MainPageController {
             checkboxesCategoryArr.length === 0)
         ) {
           product.style.display = 'block';
+          product.classList.remove('hide');
         } else {
           product.style.display = 'none';
+          product.classList.add('hide');
         }
         if (
           (checkboxesBrandArr.includes(productBrandName.innerHTML) ||
@@ -270,8 +272,10 @@ export class MainPageController {
           product.style.display !== 'none'
         ) {
           product.style.display = 'block';
+          product.classList.remove('hide');
         } else {
           product.style.display = 'none';
+          product.classList.add('hide');
         }
       });
       this.foundCount.bind(MainPageController)();
@@ -329,6 +333,11 @@ export class MainPageController {
           ? stockRangeInputRight.value
           : stockRangeInputLeft.value;
 
+      const inputCategory: NodeListOf<HTMLInputElement> = document.querySelectorAll(
+        '.input-checkbox__category'
+      );
+      const isInput = Array.from(inputCategory).some((checkbox) => checkbox.checked);
+
       productsItems.forEach((product: HTMLDivElement) => {
         const price = Number(product.dataset.price);
         const stock = Number(checkSelector(product, '.products__info-stock_count').innerHTML);
@@ -336,7 +345,8 @@ export class MainPageController {
           stock >= Number(stockRangeIn.innerHTML) &&
           stock <= Number(stockRangeOut.innerHTML) &&
           price >= Number(priceRangeIn.innerHTML.slice(1)) &&
-          price <= Number(priceRangeOut.innerHTML.slice(1))
+          price <= Number(priceRangeOut.innerHTML.slice(1)) &&
+          (!product.classList.contains('hide') || !isInput)
         ) {
           product.style.display = 'block';
         } else {
