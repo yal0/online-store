@@ -462,8 +462,38 @@ export class MainPageController {
           product.style.display = 'none';
         }
       });
+
+      if (priceRangeIn.innerHTML.slice(1) !== '10' || priceRangeOut.innerHTML.slice(1) !== '1750') {
+        this.url.price = `price=${[
+          priceRangeIn.innerHTML.slice(1),
+          priceRangeOut.innerHTML.slice(1),
+        ].join('↕')}`;
+      } else {
+        delete this.url.price;
+      }
+
+      if (stockRangeIn.innerHTML !== '1' || stockRangeOut.innerHTML !== '150') {
+        this.url.stock = `stock=${[stockRangeIn.innerHTML, stockRangeOut.innerHTML].join('↕')}`;
+      } else {
+        delete this.url.stock;
+      }
+
+      Object.keys(this.url).length !== 0
+        ? window.history.replaceState({}, '', `/?${Object.values(this.url).join('&')}`)
+        : window.history.replaceState({}, '', '/');
+
       this.foundCount.bind(MainPageController)();
     };
+
+    if (this.url.price) {
+      priceRangeInputLeft.value = this.url.price.replace('price=', '').split('%E2%86%95')[0];
+      priceRangeInputRight.value = this.url.price.replace('price=', '').split('%E2%86%95')[1];
+      if (this.url.stock) {
+        stockRangeInputLeft.value = this.url.stock.replace('stock=', '').split('%E2%86%95')[0];
+        stockRangeInputRight.value = this.url.stock.replace('stock=', '').split('%E2%86%95')[1];
+      }
+      rangeChenge();
+    }
 
     priceRangeInputLeft.addEventListener('change', rangeChenge);
     priceRangeInputRight.addEventListener('change', rangeChenge);
