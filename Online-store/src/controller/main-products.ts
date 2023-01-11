@@ -1,14 +1,49 @@
 import { MainPageView } from '../templates/main-products';
 import { checkSelector } from '../utils/checkSelector';
 import { localStorageProducts } from '../utils/localStorageProducs';
+import { urlInterface } from '../utils/urlInterface';
 
 export class MainPageController {
   view: MainPageView;
-  url: Partial<URL>;
+  url: Partial<urlInterface>;
 
   constructor(view: MainPageView) {
     this.view = view;
     this.url = {};
+  }
+
+  currentURL(location: string) {
+    const queryURL = location.replace('/?', '').split('&');
+    queryURL.forEach((query) => {
+      if (query.includes('search=')) {
+        this.url.search = query;
+      }
+      if (query.includes('big=')) {
+        this.url.big = query;
+      }
+      if (query.includes('sort=')) {
+        this.url.sort = query;
+      }
+      if (query.includes('category=')) {
+        this.url.category = query;
+      }
+      if (query.includes('brand=')) {
+        this.url.brand = query;
+      }
+      if (query.includes('price=')) {
+        this.url.price = query;
+      }
+      if (query.includes('stock=')) {
+        this.url.stock = query;
+      }
+    });
+
+    if (this.url.search) {
+      const searchInput = checkSelector(document, '.search__field') as HTMLInputElement;
+      searchInput.value = `${this.url.search.replace('search=', '')}`;
+      searchInput.value;
+    }
+    if (Object.keys(this.url).length !== 0) return;
   }
 
   startPage() {
@@ -82,6 +117,7 @@ export class MainPageController {
     const productsItems: NodeListOf<HTMLDivElement> = document.querySelectorAll('.products__item');
     const searchInput = checkSelector(document, '.search__field') as HTMLInputElement;
     const filter = searchInput.value.toLowerCase();
+
     productsItems.forEach((product: HTMLDivElement) => {
       const productDiscount = checkSelector(product, '.products__card_discount');
       const productRating = checkSelector(product, '.products__info-rating');
@@ -101,7 +137,7 @@ export class MainPageController {
           return el.textContent.toLowerCase().indexOf(filter);
         }
       };
-      if (product.style.display !== 'none') {
+      if (product.style.display !== 'none' || !product.classList.contains('hide')) {
         if (
           productCheck(productDiscount) !== -1 ||
           productCheck(productRating) !== -1 ||
@@ -123,8 +159,18 @@ export class MainPageController {
       }
     });
 
+    if (filter.length !== 0) {
+      this.url.search = `search=${filter}`;
+      window.history.replaceState({}, '', `?${Object.values(this.url).join('&')}`);
+    } else {
+      delete this.url.search;
+      window.history.replaceState({}, '', `?${Object.values(this.url).join('&')}`);
+    }
+    if (Object.keys(this.url).length === 0) {
+      window.history.replaceState({}, '', `/`);
+    }
+
     searchInput.addEventListener('input', () => this.searchText());
-    this.filterByCategoryAndBrend();
     this.foundCount();
   }
 
@@ -150,7 +196,7 @@ export class MainPageController {
 
   toggleView() {
     const btnViewSmall = checkSelector(document, '.view__small');
-    const btnViewBig = checkSelector(document, '.view__big');
+    const btnViewBig = checkSelector(document, '.view__big') as HTMLButtonElement;
     const productsContainer = checkSelector(document, '#productsContainer') as HTMLDivElement;
     const productsItems: NodeListOf<HTMLElement> = document.querySelectorAll('.products__item');
     btnViewSmall.addEventListener('click', () => {
@@ -160,6 +206,11 @@ export class MainPageController {
       productsItems.forEach((product: HTMLElement) => {
         product.classList.remove('big');
       });
+      delete this.url.big;
+      window.history.replaceState({}, '', `?${Object.values(this.url).join('&')}`);
+      if (Object.keys(this.url).length === 0) {
+        window.history.replaceState({}, '', `/`);
+      }
     });
 
     btnViewBig.addEventListener('click', () => {
@@ -169,10 +220,19 @@ export class MainPageController {
       productsItems.forEach((product: HTMLElement) => {
         product.classList.add('big');
       });
+      this.url.big = `big=true`;
+      window.history.replaceState({}, '', `?${Object.values(this.url).join('&')}`);
     });
+
+    if (this.url.big) {
+      btnViewBig.click();
+    }
   }
 
   sort() {
+    const sortSelect = checkSelector(document, '.sorts__bar_select') as HTMLOptionElement;
+    if (this.url.sort) sortSelect.value = `${this.url.sort.replace('sort=', '')}`;
+
     const productsItems: NodeListOf<HTMLDivElement> = document.querySelectorAll('.products__item');
     type sortProduct = {
       el: HTMLDivElement;
@@ -196,9 +256,10 @@ export class MainPageController {
         discount: discount,
       });
     });
+
     const productsContainer = checkSelector(document, '#productsContainer');
-    const sortSelect = checkSelector(document, '.sorts__bar_select') as HTMLOptionElement;
-    function sortProducts() {
+
+    const sortProducts = () => {
       if (sortSelect.value === 'price-ASC') sortProductArr.sort((a, b) => a.price - b.price);
       if (sortSelect.value === 'price-DESC') sortProductArr.sort((a, b) => b.price - a.price);
       if (sortSelect.value === 'rating-ASC') sortProductArr.sort((a, b) => a.rating - b.rating);
@@ -211,7 +272,9 @@ export class MainPageController {
       }
 
       sortProductArr.forEach((el) => productsContainer.append(el.el));
-    }
+      this.url.sort = `sort=${sortSelect.value}`;
+      window.history.replaceState({}, '', `/?${Object.values(this.url).join('&')}`);
+    };
 
     sortSelect.addEventListener('change', sortProducts);
   }
