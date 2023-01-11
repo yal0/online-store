@@ -52,7 +52,7 @@ export class MainPageController {
     this.searchText();
     this.toggleView();
     this.sort();
-    this.filterByCategoryAndBrend();
+    this.filterByCategoryAndBrand();
     this.filterRange();
   }
 
@@ -220,11 +220,11 @@ export class MainPageController {
       productsItems.forEach((product: HTMLElement) => {
         product.classList.add('big');
       });
-      this.url.big = `big=true`;
+      this.url.big = 'big=true';
       window.history.replaceState({}, '', `?${Object.values(this.url).join('&')}`);
     });
 
-    if (this.url.big) {
+    if (this.url.big === 'big=true') {
       btnViewBig.click();
     }
   }
@@ -279,13 +279,16 @@ export class MainPageController {
     sortSelect.addEventListener('change', sortProducts);
   }
 
-  filterByCategoryAndBrend() {
+  filterByCategoryAndBrand() {
     const inputCategory: NodeListOf<HTMLInputElement> = document.querySelectorAll(
       '.input-checkbox__category'
     );
     const inputBrand: NodeListOf<HTMLInputElement> =
       document.querySelectorAll('.input-checkbox__brand');
     const productsItems: NodeListOf<HTMLDivElement> = document.querySelectorAll('.products__item');
+
+    const categoryURL = this.url.category?.replace('category=', '').split('%E2%86%95');
+    const brandURL = this.url.brand?.replace('brand=', '').split('%E2%86%95');
 
     const checkCheckboxes = () => {
       const checkboxesCategoryArr: string[] = [];
@@ -298,6 +301,7 @@ export class MainPageController {
             : checkboxesCategoryArr.push(checkbox.id);
         }
       });
+
       inputBrand.forEach((checkbox) => {
         if (checkbox instanceof HTMLInputElement && checkbox.checked) {
           checkboxesBrandArr.includes(checkbox.id) ? null : checkboxesBrandArr.push(checkbox.id);
@@ -341,8 +345,50 @@ export class MainPageController {
           product.classList.add('hide');
         }
       });
+
       this.foundCount.bind(MainPageController)();
+      inputCategory.forEach((checkbox) => {
+        if (!checkbox.checked) {
+          delete this.url.category;
+        }
+      });
+      inputBrand.forEach((checkbox) => {
+        if (!checkbox.checked) {
+          delete this.url.brand;
+        }
+      });
+
+      checkboxesCategoryArr.length !== 0
+        ? (this.url.category = `category=${checkboxesCategoryArr.join('↕')}`)
+        : delete this.url.category;
+      checkboxesBrandArr.length !== 0
+        ? (this.url.brand = `brand=${checkboxesBrandArr.join('↕')}`)
+        : delete this.url.brand;
+      Object.keys(this.url).length !== 0
+        ? window.history.replaceState({}, '', `/?${Object.values(this.url).join('&')}`)
+        : window.history.replaceState({}, '', '');
     };
+
+    if (categoryURL?.length !== 0 && categoryURL !== undefined) {
+      inputCategory.forEach((checkbox) => {
+        if (categoryURL?.length !== 0 && categoryURL !== undefined) {
+          categoryURL.forEach((category) => {
+            checkbox.id === category ? (checkbox.checked = true) : null;
+          });
+        }
+      });
+      checkCheckboxes();
+    }
+    if (brandURL?.length !== 0 && brandURL !== undefined) {
+      inputBrand.forEach((checkbox) => {
+        if (brandURL?.length !== 0 && brandURL !== undefined) {
+          brandURL.forEach((brand) => {
+            checkbox.id === brand ? (checkbox.checked = true) : null;
+          });
+        }
+      });
+      checkCheckboxes();
+    }
 
     inputCategory.forEach((checkbox) => {
       checkbox.addEventListener('input', checkCheckboxes);
