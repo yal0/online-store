@@ -4,6 +4,7 @@ import { MainPageController } from './controller/main-products';
 const mainPage = new MainPageView();
 const mainPageController = new MainPageController(mainPage);
 
+mainPage.renderMain();
 mainPage.renderProducts();
 
 const currentLocation = window.location.href.replace(window.location.origin, '');
