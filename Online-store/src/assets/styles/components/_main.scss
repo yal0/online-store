@@ -53,13 +53,14 @@
   &::after {
     display: block;
     position: absolute;
-    top: 0;
+    top: 2px;
     right: 0;
-    width: 37px;
-    height: 37px;
+    width: 33px;
+    height: 32px;
     background: url('../images/search.svg') no-repeat center center;
     content: '';
     z-index: 100;
+    background-color: #ffffff;
   }
 }
 
