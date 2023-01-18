@@ -179,15 +179,13 @@ export class MainPageController {
     const productsItems: NodeListOf<HTMLElement> = document.querySelectorAll('.products__item');
     const infoFoundCount = checkSelector(document, '.info__found-count');
     const noFoundProducts = checkSelector(document, '.products__no-found') as HTMLElement;
-    let foundCounter = 0;
-    productsItems.forEach((product: HTMLElement) => {
-      if (product.style.display === 'block') {
-        foundCounter++;
-      }
-    });
+    const foundProductsArr = Array.from(productsItems).filter(
+      (product) => product.style.display === 'block'
+    );
+
     setTimeout(() => {
-      infoFoundCount.innerHTML = `${foundCounter.toString()}`;
-      if (foundCounter === 0) {
+      infoFoundCount.innerHTML = `${foundProductsArr.length}`;
+      if (foundProductsArr.length === 0) {
         noFoundProducts.style.display = 'block';
       } else {
         noFoundProducts.style.display = 'none';

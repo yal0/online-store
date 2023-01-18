@@ -240,14 +240,14 @@
     width: 99%;
     display: block;
     margin: 0;
-    height: 2px;
+    height: 1px;
 
     &::-webkit-slider-thumb {
       pointer-events: all;
       box-shadow: 0 0 1px 1px $dark-background;
       -webkit-appearance: none;
-      height: 15px;
-      width: 15px;
+      height: 16px;
+      width: 16px;
       border-radius: 2px;
       cursor: pointer;
       background: $discount-background;
