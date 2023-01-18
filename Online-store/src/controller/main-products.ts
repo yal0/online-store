@@ -2,6 +2,7 @@ import { MainPageView } from '../templates/main-products';
 import { checkSelector } from '../utils/checkSelector';
 import { localStorageProducts } from '../utils/localStorageProducs';
 import { urlInterface } from '../utils/urlInterface';
+import { sortProduct } from '../utils/sortProductsType';
 
 export class MainPageController {
   view: MainPageView;
@@ -230,44 +231,45 @@ export class MainPageController {
 
   sort() {
     const sortSelect = checkSelector(document, '.sorts__bar_select') as HTMLOptionElement;
-    if (this.url.sort) sortSelect.value = `${this.url.sort.replace('sort=', '')}`;
 
     const productsItems: NodeListOf<HTMLDivElement> = document.querySelectorAll('.products__item');
-    type sortProduct = {
-      el: HTMLDivElement;
-      price: number;
-      rating: number;
-      discount: number;
-    };
 
-    const sortProductArr: sortProduct[] = [];
-
-    productsItems.forEach((product) => {
+    const sortProductArr: sortProduct[] = Array.from(productsItems).map((product) => {
       const price = Number(product.dataset.price);
       const rating = Number(checkSelector(product, '.products__info-rating_count').innerHTML);
       const discount = Number(
         checkSelector(product, '.products__card_discount').innerHTML.slice(1, -1)
       );
-      sortProductArr.push({
+      return {
         el: product,
         price: price,
         rating: rating,
         discount: discount,
-      });
+      };
     });
 
     const productsContainer = checkSelector(document, '#productsContainer');
 
     const sortProducts = () => {
-      if (sortSelect.value === 'price-ASC') sortProductArr.sort((a, b) => a.price - b.price);
-      if (sortSelect.value === 'price-DESC') sortProductArr.sort((a, b) => b.price - a.price);
-      if (sortSelect.value === 'rating-ASC') sortProductArr.sort((a, b) => a.rating - b.rating);
-      if (sortSelect.value === 'rating-DESC') sortProductArr.sort((a, b) => b.rating - a.rating);
-      if (sortSelect.value === 'discount-ASC') {
-        sortProductArr.sort((a, b) => a.discount - b.discount);
-      }
-      if (sortSelect.value === 'discount-DESC') {
-        sortProductArr.sort((a, b) => b.discount - a.discount);
+      switch (sortSelect.value) {
+        case 'price-ASC':
+          sortProductArr.sort((a, b) => a.price - b.price);
+          break;
+        case 'price-DESC':
+          sortProductArr.sort((a, b) => b.price - a.price);
+          break;
+        case 'rating-ASC':
+          sortProductArr.sort((a, b) => a.rating - b.rating);
+          break;
+        case 'rating-DESC':
+          sortProductArr.sort((a, b) => b.rating - a.rating);
+          break;
+        case 'discount-ASC':
+          sortProductArr.sort((a, b) => a.discount - b.discount);
+          break;
+        case 'discount-DESC':
+          sortProductArr.sort((a, b) => b.discount - a.discount);
+          break;
       }
 
       sortProductArr.forEach((el) => productsContainer.append(el.el));
@@ -275,6 +277,10 @@ export class MainPageController {
       window.history.replaceState({}, '', `/?${Object.values(this.url).join('&')}`);
     };
 
+    if (this.url.sort) {
+      sortSelect.value = `${this.url.sort.replace('sort=', '')}`;
+      sortProducts();
+    }
     sortSelect.addEventListener('change', sortProducts);
   }
 
