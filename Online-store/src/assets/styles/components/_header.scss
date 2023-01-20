@@ -1,0 +1,48 @@
+.logo_header {
+    display: block;
+    margin: 10px auto;
+    width: 148px;
+    height: 30px;
+}
+
+.top-menu {
+    box-sizing: border-box;
+    height: 50px;
+    padding: 7px;
+    background-color: $menu-background;
+
+    .wrapper {
+        display: flex;
+        justify-content: space-between;
+    }
+}
+
+.sum{
+    margin: auto 36px auto auto;
+
+    &__value{
+        font-weight: bold;
+    }
+}
+
+.cart {
+    width: 36px;
+    height: 36px;
+    background: $text-white url('../images/cart.svg') no-repeat center center;
+    border-radius: 50%;
+    cursor: pointer;
+
+    &__count {
+        position: relative;
+        right: -29px;
+        top: -6px;
+        color: $text-white;
+        background: $discount-background;
+        font-weight: bold;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        text-align: center;
+        padding: 2px;
+    }
+}
