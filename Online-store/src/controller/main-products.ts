@@ -126,7 +126,7 @@ export class MainPageController {
 
     const productCheck = (el: Element) => {
       if (el.textContent) {
-        return el.textContent.toLowerCase().indexOf(filter);
+        return el.textContent.toLowerCase().includes(filter);
       }
     };
 
@@ -142,15 +142,15 @@ export class MainPageController {
       const productStockCount = checkSelector(product, '.products__info-stock_count');
 
       const isProductSearch =
-        productCheck(productDiscount) !== -1 ||
-        productCheck(productRating) !== -1 ||
-        productCheck(productPriceOld) !== -1 ||
-        productCheck(productPriceNew) !== -1 ||
-        productCheck(productTitle) !== -1 ||
-        productCheck(productCategory) !== -1 ||
-        productCheck(productRatingCount) !== -1 ||
-        productCheck(productBrandName) !== -1 ||
-        productCheck(productStockCount) !== -1;
+        productCheck(productDiscount) ||
+        productCheck(productRating) ||
+        productCheck(productPriceOld) ||
+        productCheck(productPriceNew) ||
+        productCheck(productTitle) ||
+        productCheck(productCategory) ||
+        productCheck(productRatingCount) ||
+        productCheck(productBrandName) ||
+        productCheck(productStockCount);
 
       if (product.style.display !== 'none' || !product.classList.contains('hide')) {
         if (isProductSearch) {
